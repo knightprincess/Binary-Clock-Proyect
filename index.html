@@ -1,8 +1,10 @@
 <!--
+
   Hello! This is very easy and fun binary clock
   A simple binary clock using HTML, CSS (Tailwind), and JavaScript, to showcase the current time in binary format
   but also to showcase the use of Tailwind CSS for styling and layout and JavaScript for possibly interactive features
   if necessary or if you want to expand on it. Have fun!
+
 --> 
 
 <!DOCTYPE html>
@@ -13,11 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binary Clock</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="icon" type="image/png" href="https://i.imgur.com/b5qlkD3.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="https://i.imgur.com/b5qlkD3.png">
+    
 
 
     <style>
@@ -47,14 +49,14 @@
 
     <div class="flex flex-col space-y-6">
         <div class="flex flex-col items-center">
-                <div id="hour-bits" class="grid grid-cols-5 gap-2 w-full max-w-md">
-                    <div class="h-12 w-full rounded-md bit-off"></div>
-                    <div class="h-12 w-full rounded-md bit-off"></div>
-                    <div class="h-12 w-full rounded-md bit-off"></div>
-                    <div class="h-12 w-full rounded-md bit-off"></div>
-                    <div class="h-12 w-full rounded-md bit-off"></div>
-                </div>
-                <span class="text-xs text-[#3C3A35] mt-[0.625rem] tracking-wide">Hours</span>
+            <div id="hour-bits" class="grid grid-cols-5 gap-2 w-full max-w-md">
+                <div class="h-12 w-full rounded-md bit-off"></div>
+                <div class="h-12 w-full rounded-md bit-off"></div>
+                <div class="h-12 w-full rounded-md bit-off"></div>
+                <div class="h-12 w-full rounded-md bit-off"></div>
+                <div class="h-12 w-full rounded-md bit-off"></div>
+          </div>
+          <span class="text-xs text-[#3C3A35] mt-[0.625rem] tracking-wide">Hours</span>
     </div>
 
     <div class="flex flex-col items-center">
@@ -126,5 +128,6 @@
 
 </body>
 </html>
+
 
 
