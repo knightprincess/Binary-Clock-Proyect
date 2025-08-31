@@ -1,0 +1,131 @@
+<!--
+  Hello! This is very easy and fun binary clock
+  A simple binary clock using HTML, CSS (Tailwind), and JavaScript, to showcase the current time in binary format
+  but also to showcase the use of Tailwind CSS for styling and layout and JavaScript for possibly interactive features
+  if necessary or if you want to expand on it. Have fun!
+--> 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Clock</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+
+   <!-- This is the corrected line to include your favicon.
+    It links to a direct image URL, not a web page. -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/PVz1zP2.png">
+
+
+    <style>
+        body {
+            font-family: 'Lora', serif;
+        }
+        .bit-off {
+            background-color: #A2A098;
+        }
+        .bit-on {
+            background-color: #1c1b18;
+            box-shadow: 0 0 4px #A2A098, 0 0 6px #A2A098;
+        }
+    </style>
+</head>
+
+
+    <body class="bg-[#d2d2c6] text-gray-100 flex items-center justify-center min-h-screen p-4">
+    
+    <div class="bg-[#fefaf4] rounded-xl p-8 max-w-2xl w-full border border-[#707066]  text-center">
+        <h1 class="text-3xl sm:text-4xl font-bold text-[#1e1b16] mb-2">
+            Binary Clock
+        </h1>
+        <p class="text-[#3C3A35] mb-4 text-sm sm:text-base">
+            Bits that are filled in represent "1"s, while empty bits represent "0"s
+        </p>
+
+    <div class="flex flex-col space-y-6">
+        <div class="flex flex-col items-center">
+                <div id="hour-bits" class="grid grid-cols-5 gap-2 w-full max-w-md">
+                    <div class="h-12 w-full rounded-md bit-off"></div>
+                    <div class="h-12 w-full rounded-md bit-off"></div>
+                    <div class="h-12 w-full rounded-md bit-off"></div>
+                    <div class="h-12 w-full rounded-md bit-off"></div>
+                    <div class="h-12 w-full rounded-md bit-off"></div>
+                </div>
+                <span class="text-xs text-[#3C3A35] mt-[0.625rem] tracking-wide">Hours</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <div id="minute-bits" class="grid grid-cols-6 gap-2 w-full max-w-md">
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+        </div>
+        <span class="text-xs text-[#3C3A35] mt-[0.625rem] tracking-wide">Minutes</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <div id="second-bits" class="grid grid-cols-6 gap-2 w-full max-w-md">
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+            <div class="h-12 w-full rounded-md bit-off"></div>
+        </div>
+        <span class="text-xs text-[#3C3A35] mt-[0.625rem] tracking-wide">Seconds</span>
+    </div>
+    </div>
+
+        <div class="mt-8 text-2xl font-bold text-[#1e1b16]">
+            <span id="standard-time">00:00:00</span>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const hourBinary = hours.toString(2).padStart(5, '0'); // Pad with 5 zeros for the new bit
+            const minuteBinary = minutes.toString(2).padStart(6, '0');
+            const secondBinary = seconds.toString(2).padStart(6, '0');
+
+            function updateBits(binaryString, elementId) {
+                const bits = document.getElementById(elementId).children;
+                for (let i = 0; i < bits.length; i++) {
+                    // Check if the binary string has a bit for the current index
+                    if (binaryString[i] === '1') {
+                        bits[i].classList.remove('bit-off');
+                        bits[i].classList.add('bit-on');
+                    } else if (binaryString[i] === '0') {
+                        bits[i].classList.remove('bit-on');
+                        bits[i].classList.add('bit-off');
+                    }
+                }
+            }
+
+            updateBits(hourBinary, 'hour-bits');
+            updateBits(minuteBinary, 'minute-bits');
+            updateBits(secondBinary, 'second-bits');
+
+            document.getElementById('standard-time').textContent =
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); 
+    </script>
+
+</body>
+</html>
